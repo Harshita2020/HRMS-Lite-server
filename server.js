@@ -59,10 +59,11 @@ app.get("/employees/:id", (req, res) => {
 });
 
 //POST
-app.post("/employee", (req, res) => {
+app.post("/employees", (req, res) => {
   employees.push(req.body);
   res.json({ success: true });
 });
+
 //PUT
 app.put("/employees/:id", (req, res) => {
   const id = Number(req.params.id);
@@ -71,8 +72,8 @@ app.put("/employees/:id", (req, res) => {
   if (index === -1) {
     return res.status(404).json({ message: "404 not index!" });
   } else {
-    let newEmp = {  ...employees[index], ...req.body ,"id": id}; //do the magic here
-    console.log("NEW EMP = ", newEmp)
+    let newEmp = { ...employees[index], ...req.body, id: id }; //do the magic here
+    console.log("NEW EMP = ", newEmp);
     employees[index] = newEmp;
     res.send(newEmp);
   }
